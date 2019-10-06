@@ -44,6 +44,7 @@ class ProyectoSchema(ma.ModelSchema):
             'correo',
             'descripcion',
             'objetivo',
+            'telefono',
             'resultado',
             'telefono_organizacion',
             'link',
