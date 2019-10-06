@@ -13,6 +13,7 @@ class Proyecto(db.Model):
     ubicacion = db.Column(db.String(100))
     correo = db.Column(db.String(100))
     descripcion = db.Column(db.Text())
+    objetivo = db.Column(db.Text())
     resultado = db.Column(db.Text())
     telefono = db.Column(db.CHAR(9))
     link = db.Column(db.String(200))
@@ -40,6 +41,7 @@ class ProyectoSchema(ma.ModelSchema):
             'ubicacion',
             'correo',
             'descripcion',
+            'objetivo',
             'resultado',
             'telefono_organizacion',
             'link',

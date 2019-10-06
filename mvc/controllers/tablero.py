@@ -57,7 +57,7 @@ def ProyectoPorId(id):
 @tablero.route('/proyecto/create',methods=['POST'])
 def ProyectoCreate():
     categoria = request.json['categoria']
-
+    
     print(categoria)
     return jsonify(categoria)
 
