@@ -53,3 +53,4 @@ class ProyectoSchema(ma.ModelSchema):
 
 
 proyecto_schema = ProyectoSchema(many=True)
+proyecto_id_schema = ProyectoSchema()
