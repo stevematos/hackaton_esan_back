@@ -14,20 +14,12 @@ class NecesidadSchema(ma.ModelSchema):
     class Meta:
         model = Necesidad
         fields = (
+            'id',
             'nombre',
             'link_icon'
         )
-#
-# class EjecutivoSchema(ma.ModelSchema):
-#
-#     class Meta:
-#         model = Ejecutivo
-#         fields = (
-#             'nombre',
-#             'equipo_venta_nombre',
-#             'equipo_venta_jefe'
-#         )
 
 
-ejecutivo_schema = NecesidadSchema(many=True)
+
+necesidad_schema = NecesidadSchema(many=True)
 # ejecutivo_schema = EjecutivoSchema(many=True)

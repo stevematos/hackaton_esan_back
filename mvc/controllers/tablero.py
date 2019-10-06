@@ -9,7 +9,7 @@ from functools import wraps
 from flask import request, abort
 
 from mvc.model import Categoria, categoria_schema, Proyecto, proyecto_schema, proyecto_id_schema, \
-    Necesidad, Comentario
+    Necesidad, Comentario, necesidad_schema
 
 tablero = Blueprint('tablero', __name__)
 
@@ -118,6 +118,11 @@ def CategoriasLista():
     return jsonify(categoria_lista)
 
 
+@tablero.route('/necesidad/list')
+def NecesidadesLista():
+    necesidades = Necesidad.query.all()
+    necesidad_lista = necesidad_schema.dump(necesidades)
+    return jsonify(necesidad_lista)
 
 # @tablero.route('/api/tablero/<string:date_inicio>/<string:date_fin>/<string:date_now>/<string:comerciales>')
 # @require_appkey
