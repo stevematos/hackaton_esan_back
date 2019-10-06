@@ -13,7 +13,8 @@ class CategoriaSchema(ma.ModelSchema):
     class Meta:
         model = Categoria
         fields = (
-            'nombre',
+            'id',
+            'nombre'
         )
 
 
