@@ -8,7 +8,7 @@ from sqlalchemy import func
 from functools import wraps
 from flask import request, abort
 
-from mvc.model import Categoria, categoria_schema, Proyecto, proyecto_schema
+from mvc.model import Categoria, categoria_schema, Proyecto, proyecto_schema,proyecto_id_schema
 
 tablero = Blueprint('tablero', __name__)
 
@@ -32,7 +32,6 @@ def hello():
     return jsonify(json)
 
 @tablero.route('/proyecto/list')
-# @require_appkey
 def ProyectoList():
 
     proyecto = Proyecto.query.all()
@@ -44,6 +43,14 @@ def ProyectoList():
 
     return jsonify(proyectos_lista)
 
+
+@tablero.route('/proyecto/<int:id>')
+def ProyectoPorId(id):
+
+    proyecto = Proyecto.query.get(id)
+    proyecto_id = proyecto_id_schema.dump(proyecto)
+
+    return jsonify(proyecto_id)
 
 # @tablero.route('/api/tablero/<string:date_inicio>/<string:date_fin>/<string:date_now>/<string:comerciales>')
 # @require_appkey
