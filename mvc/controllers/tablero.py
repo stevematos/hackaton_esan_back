@@ -24,12 +24,16 @@ def require_appkey(view_function):
             abort(401)
     return decorated_function
 
-
+@tablero.route('/')
+# @require_appkey
+def hello():
+    json = {}
+    json['probando'] = "hola mundo"
+    return jsonify(json)
 
 @tablero.route('/proyecto/list')
 # @require_appkey
 def ProyectoList():
-    json = {}
 
     proyecto = Proyecto.query.all()
     proyectos_lista = proyecto_schema.dump(proyecto)
