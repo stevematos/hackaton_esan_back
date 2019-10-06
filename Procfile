@@ -1,1 +1,1 @@
-web: python app -e production_config
+web: python app.py -e production_config
