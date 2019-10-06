@@ -65,7 +65,8 @@ def ProyectoCreate():
                  'nombre': request.json['nombre'],
                  'resultado': request.json['resultado'],
                  'twitter': request.json['twitter'],
-                 'ubicacion': request.json['ubicacion']
+                 'ubicacion': request.json['ubicacion'],
+                 'organizacion': request.json['organizacion']
                  }
 
     comentarios = request.json['comentarios']
@@ -93,6 +94,8 @@ def ProyectoCreate():
         proyecto.necesidad.append(aux)
 
     db.session.add(proyecto)
+
+    db.session.commit()
 
     # for categoria in categorias_objects:
     #     db.session.add(categoria)
