@@ -59,6 +59,7 @@ def ProyectoPorId(id):
 def ProyectoCreate():
     proyecto = { 'correo': request.json['correo'],
                  'descripcion': request.json['descripcion'],
+                 'objetivo': request.json['objetivo'],
                  'facebook': request.json['facebook'],
                  'link': request.json['link'],
                  'linkedin': request.json['linkedin'],
@@ -66,7 +67,8 @@ def ProyectoCreate():
                  'resultado': request.json['resultado'],
                  'twitter': request.json['twitter'],
                  'ubicacion': request.json['ubicacion'],
-                 'organizacion': request.json['organizacion']
+                 'organizacion': request.json['organizacion'],
+                 'telefono': request.json['telefono']
                  }
 
     comentarios = request.json['comentarios']
