@@ -10,6 +10,7 @@ class Proyecto(db.Model):
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column (db.String(100))
+    organizacion = db.Column(db.String(100))
     ubicacion = db.Column(db.String(100))
     correo = db.Column(db.String(100))
     descripcion = db.Column(db.Text())
@@ -38,6 +39,7 @@ class ProyectoSchema(ma.ModelSchema):
         fields = (
             'id',
             'nombre',
+            'organizacion',
             'ubicacion',
             'correo',
             'descripcion',

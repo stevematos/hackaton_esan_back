@@ -8,7 +8,8 @@ from sqlalchemy import func
 from functools import wraps
 from flask import request, abort
 
-from mvc.model import Categoria, categoria_schema, Proyecto, proyecto_schema, proyecto_id_schema
+from mvc.model import Categoria, categoria_schema, Proyecto, proyecto_schema, proyecto_id_schema, \
+    Necesidad, Comentario
 
 tablero = Blueprint('tablero', __name__)
 
@@ -56,10 +57,55 @@ def ProyectoPorId(id):
 
 @tablero.route('/proyecto/create',methods=['POST'])
 def ProyectoCreate():
-    categoria = request.json['categoria']
-    
-    print(categoria)
-    return jsonify(categoria)
+    proyecto = { 'correo': request.json['correo'],
+                 'descripcion': request.json['descripcion'],
+                 'facebook': request.json['facebook'],
+                 'link': request.json['link'],
+                 'linkedin': request.json['linkedin'],
+                 'nombre': request.json['nombre'],
+                 'resultado': request.json['resultado'],
+                 'twitter': request.json['twitter'],
+                 'ubicacion': request.json['ubicacion']
+                 }
+
+    comentarios = request.json['comentarios']
+
+    comentarios_objects=[ Comentario(**comentario) for comentario in comentarios]
+
+    proyecto = Proyecto(**proyecto,comentarios=comentarios_objects)
+
+    categorias = request.json['categoria']
+    necesidades = request.json['necesidad']
+
+
+    categorias_objects = []
+
+    for id_categoria in categorias:
+        aux = Categoria.query.get(id_categoria)
+        categorias_objects.append(aux)
+        proyecto.categoria.append(aux)
+
+    necesidades_objects = []
+
+    for id_necesidad in necesidades:
+        aux = Necesidad.query.get(id_necesidad)
+        necesidades_objects.append(aux)
+        proyecto.necesidad.append(aux)
+
+    db.session.add(proyecto)
+
+    # for categoria in categorias_objects:
+    #     db.session.add(categoria)
+
+    # for necesidad in necesidades_objects:
+    #     db.session.add(necesidad)
+
+    for comentario in comentarios_objects:
+        db.session.add(comentario)
+
+    db.session.commit()
+
+    return jsonify(True)
 
 
 @tablero.route('/categoria/list')
