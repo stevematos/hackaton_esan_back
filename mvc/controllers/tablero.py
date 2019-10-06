@@ -50,7 +50,7 @@ def ProyectoPorId(id):
     proyecto = Proyecto.query.get(id)
     proyecto_id = proyecto_id_schema.dump(proyecto)
 
-    proyecto_id["categoria"] = [ categoria['id'] for categoria in proyecto_id["categoria"] ]
+    # proyecto_id["categoria"] = [ categoria['id'] for categoria in proyecto_id["categoria"] ]
 
     return jsonify(proyecto_id)
 
