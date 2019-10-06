@@ -1,1 +1,1 @@
-web: gunicorn app:app --timeout 1000 --keep-alive 5
+web: python app -e production_config
