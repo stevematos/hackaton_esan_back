@@ -8,7 +8,7 @@ from sqlalchemy import func
 from functools import wraps
 from flask import request, abort
 
-from mvc.model import Categoria, categoria_schema, Proyecto, proyecto_schema,proyecto_id_schema
+from mvc.model import Categoria, categoria_schema, Proyecto, proyecto_schema, proyecto_id_schema
 
 tablero = Blueprint('tablero', __name__)
 
@@ -32,7 +32,7 @@ def hello():
     return jsonify(json)
 
 @tablero.route('/proyecto/list')
-def ProyectoList():
+def ProyectoLista():
 
     proyecto = Proyecto.query.all()
     proyectos_lista = proyecto_schema.dump(proyecto)
@@ -50,7 +50,25 @@ def ProyectoPorId(id):
     proyecto = Proyecto.query.get(id)
     proyecto_id = proyecto_id_schema.dump(proyecto)
 
+    proyecto_id["categoria"] = [ categoria['id'] for categoria in proyecto_id["categoria"] ]
+
     return jsonify(proyecto_id)
+
+@tablero.route('/proyecto/create',methods=['POST'])
+def ProyectoCreate():
+    categoria = request.json['categoria']
+
+    print(categoria)
+    return jsonify(categoria)
+
+
+@tablero.route('/categoria/list')
+def CategoriasLista():
+    categorias = Categoria.query.all()
+    categoria_lista = categoria_schema.dump(categorias)
+    return jsonify(categoria_lista)
+
+
 
 # @tablero.route('/api/tablero/<string:date_inicio>/<string:date_fin>/<string:date_now>/<string:comerciales>')
 # @require_appkey

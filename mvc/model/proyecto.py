@@ -13,9 +13,9 @@ class Proyecto(db.Model):
     ubicacion = db.Column(db.String(100))
     correo = db.Column(db.String(100))
     descripcion = db.Column(db.Text())
-    resultados = db.Column(db.Text())
-    telefono_organizacion = db.Column(db.CHAR(9))
-    link_img = db.Column(db.String(200))
+    resultado = db.Column(db.Text())
+    telefono = db.Column(db.CHAR(9))
+    link = db.Column(db.String(200))
     facebook = db.Column(db.String(200))
     twitter = db.Column(db.String(200))
     linkedin = db.Column(db.String(200))
@@ -40,9 +40,9 @@ class ProyectoSchema(ma.ModelSchema):
             'ubicacion',
             'correo',
             'descripcion',
-            'resultados',
+            'resultado',
             'telefono_organizacion',
-            'link_img',
+            'link',
             'facebook',
             'twitter',
             'linkedin',
